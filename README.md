@@ -121,13 +121,13 @@ SW[9:8] must be reserved.
 
 All processing occurs on the Nios II processor.
 
-# 8A. Image Flipping
+## 8A. Image Flipping
 
 Flip input image across both X and Y axes.
 
 Store result in a dedicated buffer.
 
-# 8B. Convolution-based Filters
+## 8B. Convolution-based Filters
 
 Implement a general-purpose 3×3 convolution function, then use it to produce:
 
@@ -147,7 +147,7 @@ Combine using G = |Gx| + |Gy|.
 
 Threshold output to produce binary edge mask.
 
-# 8C. Processing Efficiency
+## 8C. Processing Efficiency
 
 Only run the image-processing algorithms for frames being displayed.
 
@@ -199,7 +199,7 @@ System must achieve real performance improvement.
 
 # 10. Optimisations
 
-# 10A. Display Parallelism
+## 10A. Display Parallelism
 
 Add a third Nios II processor.
 
@@ -207,7 +207,7 @@ This processor must exclusively handle data movement from SDRAM to the pixel buf
 
 Must explain how the display processor works and how it impacts performance.
 
-# 10B. RGB Video
+## 10B. RGB Video
 
 Modify system to use the ESP-CAM in 12-bit RGB mode:
 
@@ -232,19 +232,19 @@ Then apply Sobel
 
 Analyse performance impact.
 
-# 10C. Packed Video Data
+## 10C. Packed Video Data
 
 Configure ESP-CAM to send packed pixel data.
 
 Modify SPI and frame unpacking logic.
 
-# 10D. Image Processing Parallelism
+## 10D. Image Processing Parallelism
 
 Splitting image-processing tasks across processors OR
 
 Parallelising convolution (e.g., different regions or rows)
 
-# 10E. Convolution Optimisations
+## 10E. Convolution Optimisations
 
 Optimise your Sobel edge-detection implementation:
 
@@ -258,7 +258,7 @@ Apply known C optimisation techniques
 
 Provide benchmarking showing improvement
 
-# 10F. Custom Instructions
+## 10F. Custom Instructions
 
 Create and integrate a hardware multiplier custom instruction:
 
