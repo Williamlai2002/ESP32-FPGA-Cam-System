@@ -121,13 +121,13 @@ SW[9:8] must be reserved.
 
 All processing occurs on the Nios II processor.
 
-8.1 Image Flipping
+# 8A. Image Flipping
 
 Flip input image across both X and Y axes.
 
 Store result in a dedicated buffer.
 
-8.2 Convolution-based Filters
+# 8B. Convolution-based Filters
 
 Implement a general-purpose 3×3 convolution function, then use it to produce:
 
@@ -147,7 +147,7 @@ Combine using G = |Gx| + |Gy|.
 
 Threshold output to produce binary edge mask.
 
-8.3 Processing Efficiency
+# 8C. Processing Efficiency
 
 Only run the image-processing algorithms for frames being displayed.
 
@@ -162,3 +162,126 @@ Blurred frame time
 Edge-detected frame time
 
 Quad-mode frame times (5 variations)
+
+# 9. Communication Parallelism
+
+Add a second Nios II processor dedicated solely to communication tasks.
+
+Requirements
+
+Add a second Nios processor to handle all SPI communication:
+
+ESP-CAM frame transfer
+
+Accelerometer data transfer
+
+Main (original) processor:
+
+Handles all image processing and display
+
+Both processors must:
+
+Use SDRAM for code and data (no on-chip memory)
+
+Transfer data safely and efficiently without corruption
+
+Run concurrently (true parallel execution)
+
+You must implement a safe inter-processor communication method:
+
+Mutexes
+
+Mailboxes / message passing
+
+Shared memory with locks
+
+System must achieve real performance improvement.
+
+# 10. Optimisations
+
+# 10A. Display Parallelism
+
+Add a third Nios II processor.
+
+This processor must exclusively handle data movement from SDRAM to the pixel buffer (VGA).
+
+Must explain how the display processor works and how it impacts performance.
+
+# 10B. RGB Video
+
+Modify your system to use the ESP-CAM in 12-bit RGB mode:
+
+Data format: RRRR-GGGG-BBBB
+
+Update ESP-CAM settings
+
+Update VGA controller (minor modification)
+
+Update image processing:
+
+Flip: handle 12-bit pixels
+
+Blur: apply convolution three times (R/G/B separately)
+
+Edge detect:
+
+Convert RGB → greyscale using
+Gray = 0.299R + 0.587G + 0.114B
+
+Then apply Sobel
+
+Analyse performance impact.
+
+# 10C. Packed Video Data
+
+Configure ESP-CAM to send packed pixel data.
+
+(Format described in background document.)
+
+Modify SPI and frame unpacking logic.
+
+Demonstrate understanding of how packing changes performance and memory bandwidth.
+
+# 10D. Image Processing Parallelism
+
+Add at least one more processor (in addition to Task 1) dedicated to:
+
+Splitting image-processing tasks across processors OR
+
+Parallelising convolution (e.g., different regions or rows)
+
+You must:
+
+Show that the new processor is used
+
+Show that the system processes images faster
+
+# 10E. Convolution Optimisations
+
+Optimise your Sobel edge-detection implementation:
+
+Reduce redundant operations
+
+Improve loop structure
+
+Improve memory access patterns
+
+Apply known C optimisation techniques
+
+Provide benchmarking showing improvement
+
+# 10F. Custom Instructions
+
+Create and integrate a hardware multiplier custom instruction:
+
+Ideally a combinational custom instruction with:
+
+2 × 32-bit inputs
+
+1 × 32-bit output
+
+Use the custom instruction to speed up convolution multiplications.
+
+Focus on utilising all 32 bits efficiently.
+
+
