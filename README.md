@@ -1,11 +1,11 @@
-# ESP32-FPGA-Cam-System
+## ESP32-FPGA-Cam-System
 Real-time image processing system using ESP32-CAM and FPGA. Features live video capture, SDRAM frame buffering, VGA display output, and accelerometer-based image filtering with edge detection capabilities. Implements multi-processor architecture for parallel image manipulation
 
 
 
 
-#Task Summary
-1. VGA Display System
+## Task Summary
+# 1. VGA Display System
 
 Implement a 25 MHz VGA pixel clock using a PLL.
 
@@ -15,7 +15,7 @@ Create a VGA controller that reads pixels and generates valid sync signals.
 
 Display blank screens and test patterns to validate the graphics pipeline.
 
-2. Nios II Processing System
+# 2. Nios II Processing System
 
 A full Nios II-based subsystem is built using Platform Designer:
 
@@ -37,7 +37,7 @@ SDRAM controller to store entire camera frames
 
 The processor can generate images in software and write them to the pixel buffer for display.
 
-3. ESP32-CAM (ESP-CAM) Integration
+# 3. ESP32-CAM (ESP-CAM) Integration
 
 Extend the SPI controller to communicate with the ESP32-CAM.
 
@@ -47,7 +47,7 @@ Receive 320×240 grayscale images over SPI.
 
 Store raw camera frames in SDRAM before transferring to the pixel buffer.
 
-4. Benchmarking
+# 4. Benchmarking
 
 Use the microsecond timer to measure:
 
@@ -59,7 +59,7 @@ End-to-end frame display time
 
 Compute and show calculated FPS on HEX displays.
 
-5. Accelerometer Integration
+# 5. Accelerometer Integration
 
 Modify the SPI controller to communicate with both the ESP32-CAM and the onboard accelerometer.
 
@@ -69,7 +69,7 @@ Configure double-tap interrupts.
 
 Use tap events and acceleration data for user controls in later tasks.
 
-6. Image Downscaling & Quad Display Mode
+# 6. Image Downscaling & Quad Display Mode
 
 To support displaying 4 image versions at once:
 
@@ -89,7 +89,7 @@ Edge-detected feed
 
 At this stage, identical placeholder frames may be used.
 
-7. User Interface & Display Mode Switching
+# 7. User Interface & Display Mode Switching
 
 Two display modes must be implemented:
 
@@ -117,7 +117,7 @@ KEYs must toggle between quad mode and single mode.
 
 SW[9:8] must be reserved.
 
-8. Image Processing Algorithms
+# 8. Image Processing Algorithms
 
 All processing occurs on the Nios II processor.
 
