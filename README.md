@@ -1,10 +1,10 @@
-## ESP32-FPGA-Cam-System
+# ESP32-FPGA-Cam-System
 Real-time image processing system using ESP32-CAM and FPGA. Features live video capture, SDRAM frame buffering, VGA display output, and accelerometer-based image filtering with edge detection capabilities. Implements multi-processor architecture for parallel image manipulation
 
 
 
 
-## Task Summary
+# Task Summary
 # 1. VGA Display System
 
 Implement a 25 MHz VGA pixel clock using a PLL.
@@ -187,7 +187,7 @@ Transfer data safely and efficiently without corruption
 
 Run concurrently (true parallel execution)
 
-You must implement a safe inter-processor communication method:
+implement a safe inter-processor communication method:
 
 Mutexes
 
@@ -209,7 +209,7 @@ Must explain how the display processor works and how it impacts performance.
 
 # 10B. RGB Video
 
-Modify your system to use the ESP-CAM in 12-bit RGB mode:
+Modify system to use the ESP-CAM in 12-bit RGB mode:
 
 Data format: RRRR-GGGG-BBBB
 
@@ -236,25 +236,13 @@ Analyse performance impact.
 
 Configure ESP-CAM to send packed pixel data.
 
-(Format described in background document.)
-
 Modify SPI and frame unpacking logic.
 
-Demonstrate understanding of how packing changes performance and memory bandwidth.
-
 # 10D. Image Processing Parallelism
-
-Add at least one more processor (in addition to Task 1) dedicated to:
 
 Splitting image-processing tasks across processors OR
 
 Parallelising convolution (e.g., different regions or rows)
-
-You must:
-
-Show that the new processor is used
-
-Show that the system processes images faster
 
 # 10E. Convolution Optimisations
 
